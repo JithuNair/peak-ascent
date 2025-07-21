@@ -1,8 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Ensures the environment generator and a player exist when entering Play Mode.
-/// </summary>
+
 public static class EnvironmentBootstrapper
 {
     const float PlayerYOffset = 2f;
