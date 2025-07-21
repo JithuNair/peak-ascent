@@ -1,0 +1,10 @@
+%YAML 1.1
+--- !u!1 &1
+GameObject:
+  m_Name: RopePickup
+  m_Component:
+  - component: {fileID: 114}
+--- !u!114 &114
+MonoBehaviour:
+  m_Script: {fileID: 11500000, guid: 0000000000000000, type: 3}
+  m_Name: ItemPickup
