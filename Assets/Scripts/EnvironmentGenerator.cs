@@ -8,6 +8,36 @@ public class EnvironmentGenerator : MonoBehaviour
     public int seed;
     public Transform parent;
 
+    void Start()
+    {
+        LoadTiles();
+        Generate();
+        PositionCamera();
+    }
+
+    void LoadTiles()
+    {
+        if (tiles == null || tiles.Length == 0)
+        {
+            tiles = Resources.LoadAll<TileData>("");
+            Debug.Log($"Loaded {tiles.Length} tile assets from Resources");
+        }
+    }
+
+    void PositionCamera()
+    {
+        Camera cam = Camera.main;
+        if (cam == null)
+        {
+            var camObj = new GameObject("Main Camera");
+            cam = camObj.AddComponent<Camera>();
+            cam.tag = "MainCamera";
+        }
+        float size = Mathf.Max(gridSize.x, gridSize.y);
+        cam.transform.position = new Vector3(gridSize.x / 2f, size, -size);
+        cam.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
+    }
+
     public void Generate()
     {
         if (parent == null)

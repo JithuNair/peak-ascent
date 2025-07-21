@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <Compile Include="../../Assets/Scripts/StaminaSystem.cs" Link="StaminaSystem.cs" />
+    <Compile Include="../../Assets/Scripts/InventoryManager.cs" Link="InventoryManager.cs" />
+    <Compile Include="../../Assets/Scripts/Item.cs" Link="Item.cs" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController controller;
     public StaminaSystem stamina = new StaminaSystem();
+    public InventoryManager inventory = new InventoryManager();
     private Vector3 velocity;
+
+    private float WeightMultiplier => 1f + (inventory?.CurrentWeight ?? 0f) / 50f;
 
     void Awake()
     {
@@ -40,10 +43,10 @@ public class PlayerController : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (Input.GetButtonDown("Jump") && controller.isGrounded && stamina.HasStamina(10f))
+        if (Input.GetButtonDown("Jump") && controller.isGrounded && stamina.HasStamina(10f * WeightMultiplier))
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-            stamina.Drain(10f);
+            stamina.Drain(10f * WeightMultiplier);
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         if (wantsSprint)
         {
-            stamina.Drain(Time.deltaTime * 20f);
+            stamina.Drain(Time.deltaTime * 20f * WeightMultiplier);
         }
         else
         {
